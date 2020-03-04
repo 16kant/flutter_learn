@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/text_section.dart';
 
 class ColumnStyle extends StatelessWidget {
   @override
@@ -21,20 +22,28 @@ class ColumnStyle extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+          TextSection(
+              title: 'Heading 1',
+              body:
+                  'sflksdjflsd fklsd flksdjflksdjf ldskjf sdlkjf lkdsjflksd flksd'),
+          TextSection(
+              title: 'Heading 2',
+              body:
+                  'sflksdjflsd fklsd flksdjflksdjf ldskjf sdlkjf lkdsjflksd flksd'),
+          TextSection(
+              title: 'Heading 3',
+              body:
+                  'sflksdjflsd fklsd flksdjflksdjf ldskjf sdlkjf lkdsjflksd flksd'),
+          TextSection(
+              title: 'Heading 4',
+              body:
+                  'sflksdjflsd fklsd flksdjflksdjf ldskjf sdlkjf lkdsjflksd flksd'),
           Container(
             color: Colors.red[200],
             child: Text('krishna'),
           ),
           Container(
             color: Colors.blue[200],
-            child: Text('krishna'),
-          ),
-          Container(
-            color: Colors.orange[200],
-            child: Text('krishna'),
-          ),
-          Container(
-            color: Colors.green[200],
             child: Text('krishna'),
           ),
         ],
