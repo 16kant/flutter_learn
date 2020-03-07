@@ -1,8 +1,9 @@
-import 'routes.dart';
+// import 'routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/screens/albumExample.dart';
+import 'package:flutter_learn/screens/batman_shows.dart';
 import 'package:flutter_learn/screens/randomList.dart';
 import 'package:flutter_learn/screens/columnStyle.dart';
+import 'package:flutter_learn/screens/show_detail.dart';
 
 void main() => runApp(App());
 
@@ -10,12 +11,18 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyApp(),
+      // home: RandomWords(),
       onGenerateRoute: _routes(),
       theme: ThemeData(
         textTheme: TextTheme(
-          title: TextStyle(fontFamily: 'IndieFlower'),
-          body1: TextStyle(fontFamily: 'TradeWinds'),
+          title: TextStyle(
+            fontFamily: 'TradeWinds',
+          ),
+          body1: TextStyle(
+            // fontFamily: 'IndieFlower',
+            // fontWeight: FontWeight.w800,
+            fontSize: 18,
+          ),
         ),
       ),
     );
@@ -23,12 +30,19 @@ class App extends StatelessWidget {
 
   RouteFactory _routes() {
     return (settings) {
+      final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
-        case RandomWordsRoute:
+        case '/':
+          screen = BatmanShows();
+          break;
+        case 'ShowDetail':
+          screen = ShowDetail(arguments['id'], arguments['name']);
+          break;
+        case 'RandomWords':
           screen = ColumnStyle();
           break;
-        case ColumnStyleRoute:
+        case 'ColumnStyle':
           screen = RandomWords();
           break;
         default:

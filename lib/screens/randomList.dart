@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:http/http.dart' as http;
 
 class RandomWords extends StatefulWidget {
   final title = 'Flutter Demo';
