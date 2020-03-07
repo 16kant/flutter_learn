@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../api/batman.dart';
+import 'dart:ui';
 
 class ShowDetail extends StatelessWidget {
   final int showId;
@@ -12,17 +13,66 @@ class ShowDetail extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        //       Center(
+        // child:
         Container(
-          constraints: BoxConstraints.expand(
-            height: 240.0,
+          // constraints: BoxConstraints.expand(
+          //   height: 240.0,
+          // ),
+          decoration: BoxDecoration(
+            // border: Border.all(
+            //     // width: 10,
+            //     // color: Colors.black38,
+            //     ),
+            // borderRadius: BorderRadius.all(
+            //   Radius.circular(50),
+            // ),
+            // shape: BoxShape.circle,
+            color: Colors.black,
+            // gradient: LinearGradient(
+            //   colors: [
+            //     Colors.black,
+            //     Colors.grey,
+            //     // Colors.purple,
+            //     // Colors.yellow,
+            //     // Colors.red,
+            //   ],
+            //   // tileMode: TileMode.clamp,
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            // ),
+            // image: DecorationImage(
+            //   fit: BoxFit.contain,
+            //   image: NetworkImage(
+            //     data.image,
+            //   ),
+            // ),
           ),
+          // height: 240,
           child: Image.network(
             data.image,
-            fit: BoxFit.contain,
+            // fit: BoxFit.contain,
           ),
-          color: Colors.black,
+          // width: 240,
+          height: 220,
+          // alignment: Alignment(1.0, 1.0),
         ),
+        // ),
         Container(
+          // color: Colors.grey,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.black,
+                Colors.grey,
+                // Colors.purple,
+                // Colors.yellow,
+                // Colors.red,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
           child: Text(
             data.name,
             style: TextStyle(
@@ -31,13 +81,26 @@ class ShowDetail extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 10),
+          padding: EdgeInsets.fromLTRB(16, 24, 16, 10),
         ),
         Expanded(
           child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.grey,
+                  Colors.white,
+                  // Colors.purple,
+                  // Colors.yellow,
+                  // Colors.red,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
             child: SingleChildScrollView(
               child: Text(
-                data.summary.replaceAll('<p>', '').replaceAll('</p>', ' '),
+                data.summary.replaceAll(r'<[^>]*>', ''),
               ),
             ),
             padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -49,6 +112,8 @@ class ShowDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size);
+    print(window.physicalSize);
     return Scaffold(
       appBar: AppBar(
         title: Text(

@@ -23,17 +23,32 @@ class BatmanShowsState extends State<BatmanShows> {
   }
 
   Widget _buildSuggestions(List shows) {
-    return ListView.separated(
-      padding: EdgeInsets.all(12),
-      itemCount: shows.length,
-      separatorBuilder: (BuildContext context, int i) => Divider(),
-      itemBuilder: (BuildContext context, int i) =>
-          _buildRow(shows[i]['id'], shows[i]['name']),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            // Colors.orange,
+            Colors.purple,
+            Colors.yellow,
+            // Colors.cyan,
+            // Colors.red,
+          ],
+          tileMode: TileMode.repeated,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: ListView.separated(
+        padding: EdgeInsets.all(12),
+        itemCount: shows.length,
+        separatorBuilder: (BuildContext context, int i) => Divider(),
+        itemBuilder: (BuildContext context, int i) =>
+            _buildRow(shows[i]['id'], shows[i]['name']),
+      ),
     );
   }
 
   Widget _buildRow(int id, String name) {
-    print('buildRow$id');
     // final bool alreadySaved = _saved.contains(pair);
     return ListTile(
         title: Text(

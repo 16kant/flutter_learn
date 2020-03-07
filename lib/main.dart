@@ -14,6 +14,9 @@ class App extends StatelessWidget {
       // home: RandomWords(),
       onGenerateRoute: _routes(),
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: Colors.black87,
+        ),
         textTheme: TextTheme(
           title: TextStyle(
             fontFamily: 'TradeWinds',
@@ -40,10 +43,10 @@ class App extends StatelessWidget {
           screen = ShowDetail(arguments['id'], arguments['name']);
           break;
         case 'RandomWords':
-          screen = ColumnStyle();
+          screen = RandomWords();
           break;
         case 'ColumnStyle':
-          screen = RandomWords();
+          screen = ColumnStyle();
           break;
         default:
           return null;
