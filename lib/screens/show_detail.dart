@@ -100,7 +100,8 @@ class ShowDetail extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               child: Text(
-                data.summary.replaceAll(r'<[^>]*>', ''),
+                data.summary
+                    .replaceAllMapped(RegExp(r'<[^>]*>'), (match) => ""),
               ),
             ),
             padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
