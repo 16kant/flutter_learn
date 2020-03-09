@@ -1,6 +1,7 @@
 // import 'routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/screens/batman_shows.dart';
+import 'package:flutter_learn/screens/login.dart';
 import 'package:flutter_learn/screens/randomList.dart';
 import 'package:flutter_learn/screens/columnStyle.dart';
 import 'package:flutter_learn/screens/show_detail.dart';
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: RandomWords(),
+      home: Login(),
       onGenerateRoute: _routes(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -36,9 +37,9 @@ class App extends StatelessWidget {
       final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
-        case '/':
-          screen = BatmanShows();
-          break;
+        // case '/':
+        //   screen = BatmanShows();
+        //   break;
         case 'ShowDetail':
           screen = ShowDetail(arguments['id'], arguments['name']);
           break;

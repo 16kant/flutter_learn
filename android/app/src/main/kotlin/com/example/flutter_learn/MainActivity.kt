@@ -1,4 +1,4 @@
-package com.example.flutter_learn
+package com.flutter_learn
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
