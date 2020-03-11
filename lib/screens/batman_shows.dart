@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+import 'package:uni_links/uni_links.dart';
 import '../api/batman.dart';
 
 class BatmanShows extends StatefulWidget {
@@ -10,15 +14,79 @@ class BatmanShows extends StatefulWidget {
 
 class BatmanShowsState extends State<BatmanShows> {
   Future<Shows> futureShows;
+  StreamSubscription _sub;
 
   @override
   void initState() {
     super.initState();
     futureShows = Shows.fetchAll();
+    // this.initDynamicLinks();
+    this.initUniLinks();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _sub.cancel();
+    //this method not called when user press android back button or quit
+    print('dispose');
+  }
+
+  Future<Null> initUniLinks() async {
+    // ... check initialUri
+    try {
+      Uri initialUri = await getInitialUri();
+      print('initial uri>>>>>>>>>>>>>');
+      print(initialUri);
+
+      // Use the uri and warn the user, if it is not correct,
+      // but keep in mind it could be `null`.
+    } on FormatException {
+      // Handle exception by warning the user their action did not succeed
+      // return?
+    }
+    // Attach a listener to the stream
+    _sub = getUriLinksStream().listen((Uri uri) {
+      print('uri>>>>>>>>>>>>>');
+      print(uri);
+      // Use the uri and warn the user, if it is not correct
+    }, onError: (err) {
+      // Handle exception by warning the user their action did not succeed
+    });
+
+    // NOTE: Don't forget to call _sub.cancel() in dispose()
+  }
+
+  // void initDynamicLinks() async {
+  //   print('initDynamicLinks>>>>>>>>>>>>');
+  //   final PendingDynamicLinkData data =
+  //       await FirebaseDynamicLinks.instance.getInitialLink();
+  //   print(data.link.path);
+  //   final Uri deepLink = data?.link;
+
+  //   if (deepLink != null) {
+  //     Navigator.pushNamed(context, deepLink.path);
+  //   }
+
+  //   FirebaseDynamicLinks.instance.onLink(
+  //       onSuccess: (PendingDynamicLinkData dynamicLink) async {
+  //     Timer(Duration(milliseconds: 1000), () {
+  //       print('PendingDynamicLinkData>>>>>>>>>>>>');
+  //       print(dynamicLink.link.path);
+  //     });
+  //     final Uri deepLink = dynamicLink?.link;
+
+  //     if (deepLink != null) {
+  //       Navigator.pushNamed(context, deepLink.path);
+  //     }
+  //   }, onError: (OnLinkErrorException e) async {
+  //     print('onLinkError');
+  //     print(e.message);
+  //   });
+  // }
+
   void _onShowTap(BuildContext context, int showId, String name) {
-    Navigator.pushNamed(context, 'ShowDetail',
+    Navigator.pushNamed(context, '/ShowDetail',
         arguments: {'id': showId, 'name': name});
   }
 

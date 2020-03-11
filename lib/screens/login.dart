@@ -7,19 +7,24 @@ class Login extends StatelessWidget {
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
   Future<FirebaseUser> _signIn() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      idToken: googleAuth.idToken,
-      accessToken: googleAuth.accessToken,
-    );
+    try {
+      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
 
-    final AuthResult authResult = await _auth.signInWithCredential(credential);
-    FirebaseUser user = authResult.user;
+      final AuthResult authResult =
+          await _auth.signInWithCredential(credential);
+      FirebaseUser user = authResult.user;
 
-    print('userName ${user.email}');
-    return user;
+      print('userName ${user.email}');
+      return user;
+    } catch (e) {
+      throw e;
+    }
   }
 
   void _signOut() {

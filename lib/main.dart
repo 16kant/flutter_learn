@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Login(),
+      // home: Login(),
       onGenerateRoute: _routes(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -37,16 +37,16 @@ class App extends StatelessWidget {
       final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
-        // case '/':
-        //   screen = BatmanShows();
-        //   break;
-        case 'ShowDetail':
+        case '/':
+          screen = BatmanShows();
+          break;
+        case '/ShowDetail':
           screen = ShowDetail(arguments['id'], arguments['name']);
           break;
-        case 'RandomWords':
+        case '/RandomWords':
           screen = RandomWords();
           break;
-        case 'ColumnStyle':
+        case '/ColumnStyle':
           screen = ColumnStyle();
           break;
         default:
