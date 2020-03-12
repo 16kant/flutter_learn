@@ -13,8 +13,6 @@ class ShowDetail extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        //       Center(
-        // child:
         Container(
           // constraints: BoxConstraints.expand(
           //   height: 240.0,
@@ -48,7 +46,6 @@ class ShowDetail extends StatelessWidget {
             //   ),
             // ),
           ),
-          // height: 240,
           child: Image.network(
             data.image,
             // fit: BoxFit.contain,
@@ -57,17 +54,12 @@ class ShowDetail extends StatelessWidget {
           height: 220,
           // alignment: Alignment(1.0, 1.0),
         ),
-        // ),
         Container(
-          // color: Colors.grey,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Colors.black,
                 Colors.grey,
-                // Colors.purple,
-                // Colors.yellow,
-                // Colors.red,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -90,9 +82,6 @@ class ShowDetail extends StatelessWidget {
                 colors: [
                   Colors.grey,
                   Colors.white,
-                  // Colors.purple,
-                  // Colors.yellow,
-                  // Colors.red,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
