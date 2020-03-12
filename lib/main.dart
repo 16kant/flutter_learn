@@ -12,6 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Krishna',
       home: StreamBuilder(
         stream: getUriLinksStream(),
         builder: (context, snapshot) {
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Deep Link Test'),
+                centerTitle: true,
               ),
               body: Center(
                 child: Text(snapshot.data.toString()),

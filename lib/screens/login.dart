@@ -1,8 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Content(),
+    );
+  }
+}
+
+class Content extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
@@ -20,8 +30,40 @@ class Login extends StatelessWidget {
     return user;
   }
 
-  void _signOut() async {
+  void _signOut(context) async {
+    print('sign out');
     await _googleSignIn.signOut();
+    // Scaffold.of(context).showSnackBar(
+    //   SnackBar(
+    //     content: Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           'Signed Out',
+    //           style: TextStyle(
+    //             fontSize: 16,
+    //             fontWeight: FontWeight.w500,
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //     duration: Duration(seconds: 3),
+    //     backgroundColor: Colors.lightGreen,
+    //   ),
+    // );
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: Text('Title...'),
+        content: Text('Alert...'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () => {},
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _signInButton(BuildContext context) {
@@ -60,9 +102,9 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _signOutButton() {
+  Widget _signOutButton(BuildContext context) {
     return RaisedButton(
-      onPressed: _signOut,
+      onPressed: () => _signOut(context),
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 9, 0, 9),
         child: Text(
@@ -82,21 +124,19 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.black87,
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            _signInButton(context),
-            Padding(
-              padding: EdgeInsets.all(10),
-            ),
-            _signOutButton(),
-          ],
-        ),
+    return Container(
+      color: Colors.black87,
+      padding: EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          _signInButton(context),
+          Padding(
+            padding: EdgeInsets.all(10),
+          ),
+          _signOutButton(context),
+        ],
       ),
     );
   }
