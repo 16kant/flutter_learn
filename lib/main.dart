@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/screens/batman_shows.dart';
+import 'package:flutter_learn/screens/destination.dart';
 import 'package:flutter_learn/screens/login.dart';
 import 'package:flutter_learn/screens/randomList.dart';
 import 'package:flutter_learn/screens/columnStyle.dart';
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
               ),
             );
           } else {
-            return Login();
+            return HomePage();
           }
         },
       ),
